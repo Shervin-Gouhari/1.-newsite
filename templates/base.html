@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css1/style.css' %}">
+    <title>
+        {% block title %}
+          
+        {% endblock title %}
+    </title>
+</head>
+<body>
+    <header>
+        <ul>
+            {% if user.is_authenticated %}
+            <li>Hi {{user.username}}<a style="padding-left: 5px;" href="{% url 'logout' %}">Logout</a></li>
+            {% else %}
+            <li><a href="{% url 'login' %}">Login</a><a style="padding-left: 5px;" href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+
+            <li><a href="{% url "home" %}">Home</a></li>
+            <li><a href="{% url "about" %}">About</a></li>
+            <li><a href="{% url "list" %}">Blogs</a></li>
+            <li><a href="{% url "create" %}">New Blog</a></li>
+        </ul>
+    </header>
+    <hr>
+
+    {% block content %}
+      
+    {% endblock content %}
+    <hr>
+
+    <footer>
+        Footer
+    </footer>
+    <hr>
+</body>
+</html>
